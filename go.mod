@@ -1,3 +1,3 @@
-module k-infra
+module k-infra.dev
 
 go 1.19
