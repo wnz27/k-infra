@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 01:11:44
- * @LastEditTime: 2024-03-17 01:15:16
+ * @LastEditTime: 2024-03-17 21:24:25
  * @FilePath: /k-infra/pkg/str_util_test.go
  * @description: type some description
  */
@@ -30,9 +30,10 @@ func TestGenRandomStringV2(t *testing.T) {
 }
 
 /*
-BenchmarkGenRandomStringV1-10             100480             10852 ns/op              32 B/op          2 allocs/op
+BenchmarkGenRandomStringV1
+BenchmarkGenRandomStringV1-10             102433             10812 ns/op              32 B/op          2 allocs/op
 PASS
-ok      github.com/wnz27/k-infra/pkg    1.618s
+ok      github.com/wnz27/k-infra/pkg    1.316s
 */
 func BenchmarkGenRandomStringV1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -41,9 +42,10 @@ func BenchmarkGenRandomStringV1(b *testing.B) {
 }
 
 /*
-BenchmarkGenRandomStringV2-10            7632860               150.8 ns/op            32 B/op          2 allocs/op
+BenchmarkGenRandomStringV2
+BenchmarkGenRandomStringV2-10             107679             10838 ns/op              32 B/op          2 allocs/op
 PASS
-ok      github.com/wnz27/k-infra/pkg    1.617s
+ok      github.com/wnz27/k-infra/pkg    1.587s
 */
 func BenchmarkGenRandomStringV2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
