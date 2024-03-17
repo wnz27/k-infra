@@ -1,9 +1,9 @@
 /*
  * @Author: 27
  * @LastEditors: 27
- * @Date: 2024-03-16 22:36:34
- * @LastEditTime: 2024-03-17 01:00:01
- * @FilePath: /k-infra/douyin_sdk/base/sign.go
+ * @Date: 2024-03-16 23:51:32
+ * @LastEditTime: 2024-03-17 23:37:08
+ * @FilePath: /k-infra/douyin_sdk/service/base/sign.go
  * @description: type some description
  */
 // 生成及验签逻辑
@@ -110,8 +110,13 @@ func buildPrivateKey(privateKeyString string) (*rsa.PrivateKey, error) {
 	return privateKey.(*rsa.PrivateKey), nil
 }
 
-func pemToRSAPublicKey(pemKeyStr string) (*rsa.PublicKey, error) {
-	block, _ := pem.Decode([]byte(pemKeyStr))
+/**
+ * @description: public key string to rsa.PublicKey | 使用公钥字符串构造 rsa.PublicKey 对象
+ * @param {string} publicKeyStr
+ * @return {*}
+ */
+func pemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
+	block, _ := pem.Decode([]byte(publicKeyStr))
 	if block == nil || len(block.Bytes) == 0 {
 		return nil, fmt.Errorf("empty block in pem string")
 	}

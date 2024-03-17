@@ -2,8 +2,8 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:51:32
- * @LastEditTime: 2024-03-17 00:37:18
- * @FilePath: /k-infra/douyin_sdk/base/sign_test.go
+ * @LastEditTime: 2024-03-17 23:37:08
+ * @FilePath: /k-infra/douyin_sdk/service/base/sign_test.go
  * @description: type some description
  */
 package base

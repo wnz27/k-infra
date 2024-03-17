@@ -2,20 +2,31 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:20:01
- * @LastEditTime: 2024-03-17 00:57:14
- * @FilePath: /k-infra/douyin_sdk/entity/const.go
+ * @LastEditTime: 2024-03-17 23:38:27
+ * @FilePath: /k-infra/douyin_sdk/entity/common/const.go
  * @description: type some description
  */
-package entity
+package common
 
 /*
 一些常量定义
+some const value define
 */
+
+// 基础常量定义
+type DouyinDevEnv string
+
+const (
+	DouyinDevEnvTest DouyinDevEnv = "DY_TEST"
+	DouyinDevEnvProd DouyinDevEnv = "DY_PROD"
+)
 
 // 沙盒环境的域名为
 const (
-	DouyinSandboxDomain = "https://open-sandbox.douyin.com"
-	DouyinProdDomain    = "https://open.douyin.com"
+	DouyinSandboxDomain      = "https://open-sandbox.douyin.com"
+	DouyinUpperSandboxDomain = "https://open-sandbox.Douyin.com" // 暂不知区别，如果后续发现一样会替换掉
+	DouyinProdDomain         = "https://open.douyin.com"
+	ToutiaoProdDomain        = "https://developer.toutiao.com"
 )
 
 const (
