@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 23:46:05
- * @LastEditTime: 2024-03-18 00:29:55
+ * @LastEditTime: 2024-03-19 23:43:07
  * @FilePath: /k-infra/douyin_sdk/service/token/token_test.go
  * @description: type some description
  */
@@ -20,7 +20,7 @@ func TestGetAccessToken(t *testing.T) {
 	c := pkg.BuildFastHttpClient("500ms", "500ms", "1h")
 	tokenService := NewTokenService(common.DouyinDevEnvTest, c)
 	apiReq := api.GetAccessTokenRequest{
-		DouyinBaseRequest: api.DouyinBaseRequest{
+		DouyinBaseRequest: common.DouyinBaseRequest{
 			APPID:  "xxxx",
 			Secret: "xxxxx",
 		},

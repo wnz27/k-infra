@@ -2,11 +2,11 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 01:18:23
- * @LastEditTime: 2024-03-17 23:26:51
- * @FilePath: /k-infra/douyin_sdk/entity/api/req_res.go
+ * @LastEditTime: 2024-03-19 23:42:44
+ * @FilePath: /k-infra/douyin_sdk/entity/common/req_res.go
  * @description: type some description
  */
-package api
+package common
 
 type DouyinBaseRequest struct {
 	APPID  string `json:"appid"`  // 抖音小程序的AppID

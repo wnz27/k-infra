@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:20:01
- * @LastEditTime: 2024-03-17 23:38:27
+ * @LastEditTime: 2024-03-19 23:27:59
  * @FilePath: /k-infra/douyin_sdk/entity/common/const.go
  * @description: type some description
  */
@@ -29,11 +29,23 @@ const (
 	ToutiaoProdDomain        = "https://developer.toutiao.com"
 )
 
+// Header
 const (
-	DouyinSignResponseTimestampHeader         string = "Byte-Timestamp"
-	DouyinSignResponseNonceHeader             string = "Byte-Nonce-Str"
-	DouyinSignResponseSignatureHeader         string = "Byte-Signature"
-	DouyinSignReqAuthHeaderKey                string = "Byte-Authorization"
+	DouyinAuthHeader string = "Byte-Authorization"
+	// 开发者回调路径，不包含域名
+	DouyinIDHeader string = "Byte-Identifyname"
+	// 请求包签名
+	DouyinSignatureHeader string = "Byte-Signature"
+	// 抖音开平统一日志id，当出现问题时可以提供此id给抖音研发人员协助定位问题
+	DouyinLogIDHeader string = "Byte-Logid"
+	// 随机字符串，由字母、数字、下划线组成，区分大小写，len(Byte-Nonce-Str) <= 128
+	DouyinNonceHeader string = "Byte-Nonce-Str"
+	// 请求时间戳，精度：秒
+	DouyinTimeStamp string = "Byte-Timestamp"
+)
+
+// HeaderContent
+const (
 	DouyinSignReqAuthHeaderAlgorithmType      string = "SHA256-RSA2048"
 	DouyinSignReqAuthHeaderValueKeyAppID      string = "appid"
 	DouyinSignReqAuthHeaderValueKeyNonce      string = "nonce_str"

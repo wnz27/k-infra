@@ -2,11 +2,11 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 23:22:51
- * @LastEditTime: 2024-03-18 00:19:20
- * @FilePath: /k-infra/douyin_sdk/entity/api/err_code.go
+ * @LastEditTime: 2024-03-19 23:39:29
+ * @FilePath: /k-infra/douyin_sdk/entity/common/err_code.go
  * @description: type some description
  */
-package api
+package common
 
 // V1 版本
 var ErrorCodeMapString = map[int]string{
@@ -17,12 +17,16 @@ var ErrorCodeMapString = map[int]string{
 	40020: "grant_type 不是 client_credential",
 }
 
-type DouyinErrCode struct {
+type DouyinBaseErrCode struct {
 	ErrNo   int    `json:"err_no"`
 	ErrTips string `json:"err_tips"`
-	Error   int    `json:"error"`
 }
 
-func (ec DouyinErrCode) ErrMsg() string {
+func (ec DouyinBaseErrCode) ErrMsg() string {
 	return ErrorCodeMapString[ec.ErrNo]
+}
+
+type DouyinErrCode struct {
+	DouyinBaseErrCode
+	Error int `json:"error"`
 }

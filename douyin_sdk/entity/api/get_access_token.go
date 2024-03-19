@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 21:27:10
- * @LastEditTime: 2024-03-18 00:20:34
+ * @LastEditTime: 2024-03-19 23:43:00
  * @FilePath: /k-infra/douyin_sdk/entity/api/get_access_token.go
  * @description: type some description
  */
@@ -43,7 +43,7 @@ func BuildGetAccessTokenURL(env common.DouyinDevEnv) string {
 type GetAccessTokenRequest struct {
 	// APPID  string `json:"appid"`  // 抖音小程序的AppID
 	// Secret string `json:"secret"` // 小程序的 APP Secret，可以在开发者后台获取
-	DouyinBaseRequest
+	common.DouyinBaseRequest
 	GrantType string `json:"grant_type"` // 授权类型，此处只需填写 client_credential
 }
 
@@ -55,13 +55,13 @@ type GetAccessTokenResData struct {
 type GetAccessTokenResponse struct {
 	// ErrNo   int    `json:"err_no"`
 	// ErrTips string `json:"err_tips"`
-	DouyinBaseResponse
+	common.DouyinBaseResponse
 	Data GetAccessTokenResData `json:"data"`
 }
 
 type GetAccessTokenErrorResponse struct {
 	// ErrNo   int    `json:"err_no"`
 	// ErrTips string `json:"err_tips"`
-	DouyinBaseResponse
+	common.DouyinBaseResponse
 	Data string `json:"data"`
 }
