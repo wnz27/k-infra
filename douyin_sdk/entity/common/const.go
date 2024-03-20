@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:20:01
- * @LastEditTime: 2024-03-19 23:27:59
+ * @LastEditTime: 2024-03-20 09:43:17
  * @FilePath: /k-infra/douyin_sdk/entity/common/const.go
  * @description: type some description
  */
@@ -12,6 +12,12 @@ package common
 一些常量定义
 some const value define
 */
+
+const (
+	GeneralDateTimeLayout = "2006-01-02 15:04:05"
+	GeneralTimeFormat     = "15:04:05"
+	GeneralDateFormat     = "2006-01-02"
+)
 
 // 基础常量定义
 type DouyinDevEnv string

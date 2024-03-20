@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 01:18:23
- * @LastEditTime: 2024-03-19 23:42:44
+ * @LastEditTime: 2024-03-20 09:30:55
  * @FilePath: /k-infra/douyin_sdk/entity/common/req_res.go
  * @description: type some description
  */
@@ -19,3 +19,18 @@ type DouyinBaseResponse struct {
 	DouyinErrCode
 	// Data    interface{} `json:"data"`
 }
+
+type DouyinPlatformReqHeader struct {
+	ByteIdentifyName string // 取自抖音平台过来的请求的请求头 Byte-Identifyname
+	ByteLogID        string // 取自抖音平台过来的请求的请求头 Byte-Logid
+	ByteNonceStr     string // 取自抖音平台过来的请求的请求头 Byte-Nonce-Str
+	ByteSignature    string // 取自抖音平台过来的请求的请求头 Byte-Signature
+	ByteTimestamp    string // 取自抖音平台过来的请求的请求头 Byte-Timestamp
+}
+
+// base response use const
+const (
+	SuccessCode    = 0
+	SuccessMessage = "success"
+	// FailedMsg      = "failed"
+)
