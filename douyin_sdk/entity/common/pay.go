@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-20 12:08:14
+ * @LastEditTime: 2024-03-20 15:25:44
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -43,13 +43,6 @@ type PayCallBackRequest struct {
 	Version string `json:"version"`
 }
 
-/*
-ByteIdentifyName string // 取自抖音平台过来的请求的请求头 Byte-Identifyname
-ByteLogID        string // 取自抖音平台过来的请求的请求头 Byte-Logid
-ByteNonceStr     string // 取自抖音平台过来的请求的请求头 Byte-Nonce-Str
-ByteSignature    string // 取自抖音平台过来的请求的请求头 Byte-Signature
-ByteTimestamp    string // 取自抖音平台过来的请求的请求头 Byte-Timestamp
-*/
 func (pcbReq *PayCallBackRequest) ToPayCallBackAllData(ctx context.Context, parser PayCallBackReqParser) (*PayCallBackReqAllData, error) {
 	return parser.ParsePayCallBackRequest(ctx)
 }
