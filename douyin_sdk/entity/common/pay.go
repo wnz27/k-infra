@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-20 09:50:02
+ * @LastEditTime: 2024-03-20 12:03:01
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -59,10 +59,7 @@ type PayCallBackReqAllData struct {
 	DouyinPlatformReqHeader
 }
 
-// 由 PayCallBackRequest 的 msg Unmarshal 而来
-// From PayCallBackRequest.Msg Unmarshal
-type PayCallBackInfo struct {
-	AppID          string             `json:"app_id"`
+type BaseDouyinOrderInfo struct {
 	OutOrderNo     string             `json:"out_order_no"`     //  开发者系统生成的订单号，与抖音开平交易单号 order_id 唯一关联，长度 <= 64byte
 	OrderID        string             `json:"order_id"`         //  抖音开平侧订单id，长度 <= 64byte
 	Status         CallBackPayStatus  `json:"status"`           //  支付结果状态，目前有两种状态： "SUCCESS" （支付成功 ） "CANCEL" （支付取消）
@@ -74,6 +71,13 @@ type PayCallBackInfo struct {
 	MerchantUID    string             `json:"merchant_uid"`     //  该笔交易的卖家商户号 注：status="SUCCESS"时一定有值
 	Message        string             `json:"message"`          //  该笔交易取消原因，如："USER_CANCEL"：用户取消 "TIME_OUT"：超时取消
 	EventTime      int64              `json:"event_time"`       //  用户支付成功/支付取消时间戳，单位为毫秒
+}
+
+// 由 PayCallBackRequest 的 msg Unmarshal 而来
+// From PayCallBackRequest.Msg Unmarshal
+type PayCallBackInfo struct {
+	AppID string `json:"app_id"`
+	BaseDouyinOrderInfo
 }
 
 // 尽量不要强依赖该方法的字符串
