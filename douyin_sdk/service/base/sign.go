@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:51:32
- * @LastEditTime: 2024-03-17 23:37:08
+ * @LastEditTime: 2024-03-20 08:37:15
  * @FilePath: /k-infra/douyin_sdk/service/base/sign.go
  * @description: type some description
  */
@@ -118,7 +118,7 @@ func buildPrivateKey(privateKeyString string) (*rsa.PrivateKey, error) {
 func pemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
 	block, _ := pem.Decode([]byte(publicKeyStr))
 	if block == nil || len(block.Bytes) == 0 {
-		return nil, fmt.Errorf("empty block in pem string")
+		return nil, fmt.Errorf("Empty block in pem string")
 	}
 	key, err := x509.ParsePKIXPublicKey(block.Bytes)
 	if err != nil {
@@ -128,6 +128,6 @@ func pemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
 	case *rsa.PublicKey:
 		return key, nil
 	default:
-		return nil, fmt.Errorf("not rsa public key")
+		return nil, fmt.Errorf("Not rsa public key")
 	}
 }

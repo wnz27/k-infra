@@ -2,11 +2,13 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-19 23:41:03
+ * @LastEditTime: 2024-03-20 09:03:37
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
 package common
+
+import "context"
 
 type CallBackPayStatus string
 
@@ -24,29 +26,35 @@ type PayCallBackRequest struct {
 	Version string `json:"version"`
 }
 
-/*
-//支付取消回调示例
+func (pcbReq *PayCallBackRequest) ToPayCallBackAllData() PayCallBackReqAllData {
+	return PayCallBackReqAllData{}
+}
 
-	{
-	    "app_id": "tt07e371xxxxxxx",
-	    "out_order_no": "motb52726742593307630520652",
-	    "order_id": "ext_order_123",
-	    "status": "CANCEL",
-	    "total_amount": 1,
-	    "discount_amount": 0,
-	    "merchant_uid": "1231123",
-	    "message": "",
-	    "event_time": 1692775192000,
-		"pay_channel": 1,
-		"channel_pay_id": "2iu2082897r9hflquf",
-		"user_bill_pay_id": "DPTS12031230128124421",
-	}
-*/
-// 由 msg unmarshall来
+type PayCallBackReqAllData struct {
+	PayCallBackRequest
+}
+
+// 由 PayCallBackRequest 的 msg Unmarshal 而来
+// From PayCallBackRequest.Msg Unmarshal
 type PayCallBackInfo struct {
-	Status CallBackPayStatus `json:"status"`
+	AppID          string            `json:"app_id"`
+	OutOrderNo     string            `json:"out_order_no"`
+	OrderID        string            `json:"order_id"`
+	Status         CallBackPayStatus `json:"status"`
+	TotalAmount    int               `json:"total_amount"`
+	DiscountAmount int               `json:"discount_amount"`
+	MerchantUID    string            `json:"merchant_uid"`
+	Message        string            `json:"message"`
+	EventTime      int64             `json:"event_time"`
+	PayChannel     int               `json:"pay_channel"`
+	ChannelPayID   string            `json:"channel_pay_id"`
+	UserBillPayID  string            `json:"user_bill_pay_id"`
 }
 
 type PayCallBackResponse struct {
 	DouyinBaseErrCode
+}
+
+type ParsePayCallBackReq interface {
+	ParsePayCallBackRequest(ctx context.Context) (*PayCallBackReqAllData, error)
 }
