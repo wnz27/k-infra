@@ -2,14 +2,16 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 01:03:07
- * @LastEditTime: 2024-03-17 21:25:03
+ * @LastEditTime: 2024-03-20 13:31:48
  * @FilePath: /k-infra/pkg/str_util.go
  * @description: type some description
  */
 package pkg
 
 import (
+	"errors"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
@@ -56,4 +58,22 @@ func GenRandomStringV1() string {
 
 	// 输出随机字符串
 	return string(randomString)
+}
+
+func panicErr(errMsgKey string, err error) {
+	errMsg := errMsgKey + ":" + err.Error()
+	panic(errors.New(errMsg))
+}
+
+// F64ToString float64 --> string, precision 精度 -1 表示保留所有位, 产生截断会四舍五入
+func F64ToString(f float64, precision int) string {
+	return strconv.FormatFloat(f, 'f', precision, 64)
+}
+
+func ParseInt64FromStr(str string, errMsgKey string) int64 {
+	res, e1 := strconv.ParseInt(str, 10, 64)
+	if e1 != nil {
+		panicErr(errMsgKey, e1)
+	}
+	return res
 }
