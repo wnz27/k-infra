@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-21 11:38:08
+ * @LastEditTime: 2024-03-21 14:25:59
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -103,6 +103,8 @@ type DouyinPayCallBackResponse struct {
 	DouyinBaseErrCode
 }
 
+// 从请求中获取 post 的请求体以及从 header 中拿到抖音平台过来的回调请求携带的请求头
+// get post req body and get douyin platform header from request
 type DouyinPayCallBackReqParser interface {
 	ParseDouyinPayCallBackRequest(ctx context.Context) (*DouyinPayCallBackReqAllData, error)
 }

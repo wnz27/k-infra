@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-21 10:49:47
- * @LastEditTime: 2024-03-21 11:41:44
+ * @LastEditTime: 2024-03-21 14:24:35
  * @FilePath: /k-infra/douyin_sdk/service/pay/pay.go
  * @description: type some description
  */
@@ -24,6 +24,11 @@ func NewGinParser() *GinParser {
 	return &GinParser{}
 }
 
+/**
+ * @description: 从请求中获取 post 的请求体以及从 header 中拿到抖音平台过来的回调请求携带的请求头
+ * @param {context.Context} ctx
+ * @return {*}
+ */
 func (parser *GinParser) ParseDouyinPayCallBackRequest(ctx context.Context) (*common.DouyinPayCallBackReqAllData, error) {
 	ginCtx := ctx.(*gin.Context)
 	var douyinPlatformReq common.DouyinPayCallBackRequest
