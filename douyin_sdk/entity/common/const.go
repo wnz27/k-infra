@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-16 23:20:01
- * @LastEditTime: 2024-03-20 09:43:17
+ * @LastEditTime: 2024-03-21 11:50:10
  * @FilePath: /k-infra/douyin_sdk/entity/common/const.go
  * @description: type some description
  */
@@ -47,7 +47,7 @@ const (
 	// 随机字符串，由字母、数字、下划线组成，区分大小写，len(Byte-Nonce-Str) <= 128
 	DouyinNonceHeader string = "Byte-Nonce-Str"
 	// 请求时间戳，精度：秒
-	DouyinTimeStamp string = "Byte-Timestamp"
+	DouyinTimeStampHeader string = "Byte-Timestamp"
 )
 
 // HeaderContent
