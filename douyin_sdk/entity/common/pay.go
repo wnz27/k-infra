@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-21 16:21:22
+ * @LastEditTime: 2024-03-21 16:50:17
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -86,6 +86,10 @@ type BaseDouyinOrderInfo struct {
 	MerchantUID    string                   `json:"merchant_uid"`     //  该笔交易的卖家商户号 注：status="SUCCESS"时一定有值
 	Message        string                   `json:"message"`          //  该笔交易取消原因，如："USER_CANCEL"：用户取消 "TIME_OUT"：超时取消
 	EventTime      int64                    `json:"event_time"`       //  用户支付成功/支付取消时间戳，单位为毫秒
+}
+
+func (order *BaseDouyinOrderInfo) IsPaid() bool {
+	return order.Status == DouyinCallBackPayStatusSuccess
 }
 
 // 由 PayCallBackRequest 的 msg Unmarshal 而来
