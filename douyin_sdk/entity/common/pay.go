@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-21 14:25:59
+ * @LastEditTime: 2024-03-21 16:21:22
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -16,7 +16,13 @@ package common
 import (
 	"context"
 	"errors"
+
+	jsoniter "github.com/json-iterator/go"
+
+	"github.com/wnz27/k-infra/douyin_sdk/utils"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type DouyinCallBackPayStatus string
 
@@ -50,6 +56,23 @@ func (pcbReq *DouyinPayCallBackRequest) ToPayCallBackAllData(ctx context.Context
 type DouyinPayCallBackReqAllData struct {
 	DouyinPayCallBackRequest
 	DouyinPlatformReqHeader
+}
+
+func (reqData *DouyinPayCallBackReqAllData) VerifySign(
+	publicKeyTokenStr string) (bool, error) {
+	return utils.VerifySign(
+		reqData.ByteTimestamp, reqData.ByteNonceStr,
+		reqData.Msg, reqData.ByteSignature, publicKeyTokenStr)
+}
+
+func (reqData *DouyinPayCallBackReqAllData) ParseDouyinOrderInfo() (DouyinPayCallBackInfo, error) {
+	infoBytes := []byte(reqData.Msg)
+	var payCBInfo DouyinPayCallBackInfo
+	err := json.Unmarshal(infoBytes, &payCBInfo)
+	if err != nil {
+		return payCBInfo, err
+	}
+	return payCBInfo, nil
 }
 
 type BaseDouyinOrderInfo struct {

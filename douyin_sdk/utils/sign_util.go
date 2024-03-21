@@ -1,11 +1,3 @@
-/*
- * @Author: 27
- * @LastEditors: 27
- * @Date: 2024-03-16 23:51:32
- * @LastEditTime: 2024-03-20 08:37:15
- * @FilePath: /k-infra/douyin_sdk/service/base/sign.go
- * @description: type some description
- */
 // 生成及验签逻辑
 // gen or verify sign logic
 
@@ -14,7 +6,7 @@
 
 // 该文件中方法的时间: 2024-03-16 22:41:44
 // this file method time: 2024-03-16 22:41:44
-package base
+package utils
 
 import (
 	"crypto"

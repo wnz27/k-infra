@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-21 10:49:47
- * @LastEditTime: 2024-03-21 14:24:35
+ * @LastEditTime: 2024-03-21 15:48:06
  * @FilePath: /k-infra/douyin_sdk/service/pay/pay.go
  * @description: type some description
  */
@@ -12,6 +12,7 @@ import (
 	"context"
 
 	"github.com/gin-gonic/gin"
+
 	"github.com/wnz27/k-infra/douyin_sdk/entity/common"
 )
 
