@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-23 14:56:41
+ * @LastEditTime: 2024-03-23 15:02:38
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -69,9 +69,13 @@ type DouyinPayCallBackReqAllData struct {
 
 func (reqData *DouyinPayCallBackReqAllData) VerifySign(
 	publicKeyTokenStr string, isDebug bool) (bool, error) {
+	bodyString, err1 := reqData.ToBodyString()
+	if err1 != nil {
+		return false, errors.New("ToBodyString failed: " + err1.Error())
+	}
 	return utils.VerifySign(
 		reqData.ByteTimestamp, reqData.ByteNonceStr,
-		reqData.Msg, reqData.ByteSignature,
+		bodyString, reqData.ByteSignature,
 		publicKeyTokenStr, isDebug,
 	)
 }
