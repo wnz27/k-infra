@@ -2,14 +2,17 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-21 10:49:47
- * @LastEditTime: 2024-03-21 15:48:06
+ * @LastEditTime: 2024-03-23 16:17:32
  * @FilePath: /k-infra/douyin_sdk/service/pay/pay.go
  * @description: type some description
  */
 package pay
 
 import (
+	"bytes"
 	"context"
+	"io/ioutil"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 
@@ -32,6 +35,13 @@ func NewGinParser() *GinParser {
  */
 func (parser *GinParser) ParseDouyinPayCallBackRequest(ctx context.Context) (*common.DouyinPayCallBackReqAllData, error) {
 	ginCtx := ctx.(*gin.Context)
+	// 拿请求体
+	bodyBytes, err1 := ginCtx.GetRawData()
+	if err1 != nil {
+		return nil, err1
+	}
+	// 重置请求体
+	ginCtx.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 	var douyinPlatformReq common.DouyinPayCallBackRequest
 	bindErr := ginCtx.ShouldBind(&douyinPlatformReq)
 	if bindErr != nil {
@@ -41,6 +51,7 @@ func (parser *GinParser) ParseDouyinPayCallBackRequest(ctx context.Context) (*co
 	// 从请求头中拿数据
 	// get data from header
 	return &common.DouyinPayCallBackReqAllData{
+		BodyString: strings.TrimSpace(string(bodyBytes)),
 		DouyinPayCallBackRequest: common.DouyinPayCallBackRequest{
 			Msg:     douyinPlatformReq.Msg,
 			Type:    douyinPlatformReq.Type,

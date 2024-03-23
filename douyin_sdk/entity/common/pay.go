@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-23 15:26:51
+ * @LastEditTime: 2024-03-23 16:10:42
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -65,6 +65,7 @@ func (pcbReq *DouyinPayCallBackRequest) ToPayCallBackAllData(ctx context.Context
 type DouyinPayCallBackReqAllData struct {
 	DouyinPayCallBackRequest
 	DouyinPlatformReqHeader
+	BodyString string
 }
 
 func (reqData *DouyinPayCallBackReqAllData) VerifySign(
