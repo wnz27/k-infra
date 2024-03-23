@@ -108,9 +108,9 @@ func buildPrivateKey(privateKeyString string) (*rsa.PrivateKey, error) {
  * @return {*}
  */
 func pemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
-	block, _ := pem.Decode([]byte(publicKeyStr))
+	block, e1 := pem.Decode([]byte(publicKeyStr))
 	if block == nil || len(block.Bytes) == 0 {
-		return nil, fmt.Errorf("Empty block in pem string")
+		return nil, fmt.Errorf("Empty block in pem string: %v", e1)
 	}
 	key, err := x509.ParsePKIXPublicKey(block.Bytes)
 	if err != nil {
