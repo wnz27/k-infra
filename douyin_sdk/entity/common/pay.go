@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-23 13:36:48
+ * @LastEditTime: 2024-03-23 14:56:41
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -47,6 +47,15 @@ type DouyinPayCallBackRequest struct {
 	Type string `json:"type"`
 	// 固定值："3.0"。回调版本，用于开发者识别回调参数的变更
 	Version string `json:"version"`
+}
+
+func (pcbReq *DouyinPayCallBackRequest) ToBodyString() (string, error) {
+	// To json string
+	bodyBytes, e1 := json.Marshal(pcbReq)
+	if e1 != nil {
+		return "", e1
+	}
+	return string(bodyBytes), nil
 }
 
 func (pcbReq *DouyinPayCallBackRequest) ToPayCallBackAllData(ctx context.Context, parser DouyinPayCallBackReqParser) (*DouyinPayCallBackReqAllData, error) {
