@@ -60,7 +60,7 @@ func BuildSign(httpMethod, uri, timestamp, nonce, body string, privateKey *rsa.P
  * @return {*}
  */
 func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string) (bool, error) {
-	pubKey, err := pemToRSAPublicKey(platformPubKeyStr) // 注意验签时publicKey使用平台公钥而非应用公钥
+	pubKey, err := PemToRSAPublicKey(platformPubKeyStr) // 注意验签时publicKey使用平台公钥而非应用公钥
 	if err != nil {
 		return false, err
 	}
@@ -107,7 +107,7 @@ func buildPrivateKey(privateKeyString string) (*rsa.PrivateKey, error) {
  * @param {string} publicKeyStr
  * @return {*}
  */
-func pemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
+func PemToRSAPublicKey(publicKeyStr string) (*rsa.PublicKey, error) {
 	block, e1 := pem.Decode([]byte(publicKeyStr))
 	if block == nil || len(block.Bytes) == 0 {
 		return nil, fmt.Errorf("Empty block in pem string: %v", e1)

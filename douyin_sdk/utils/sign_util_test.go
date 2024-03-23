@@ -1,6 +1,16 @@
+/*
+ * @Author: 27
+ * @LastEditors: 27
+ * @Date: 2024-03-16 23:51:32
+ * @LastEditTime: 2024-03-23 11:46:25
+ * @FilePath: /k-infra/douyin_sdk/utils/sign_util_test.go
+ * @description: type some description
+ */
 package utils
 
-import "testing"
+import (
+	"testing"
+)
 
 var mockPublicKey string = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5BsOF7lcjl/lwFZZwWxf
@@ -54,7 +64,7 @@ func TestBuildPrivateKey(t *testing.T) {
 }
 
 func TestPemToRSAPublicKey(t *testing.T) {
-	pubK, err := pemToRSAPublicKey(mockPublicKey)
+	pubK, err := PemToRSAPublicKey(mockPublicKey)
 	if err != nil {
 		t.Errorf("pemToRSAPublicKey() error = %v", err)
 	}
