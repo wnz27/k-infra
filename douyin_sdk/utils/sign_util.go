@@ -60,9 +60,9 @@ func BuildSign(httpMethod, uri, timestamp, nonce, body string, privateKey *rsa.P
  * @return {*}
  */
 func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string) (bool, error) {
-	pubKey, err := PemToRSAPublicKey(platformPubKeyStr) // 注意验签时publicKey使用平台公钥而非应用公钥
-	if err != nil {
-		return false, err
+	pubKey, err1 := PemToRSAPublicKey(platformPubKeyStr) // 注意验签时publicKey使用平台公钥而非应用公钥
+	if err1 != nil {
+		return false, err1
 	}
 
 	hashed := sha256.Sum256([]byte(
@@ -70,12 +70,15 @@ func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string) (bo
 			nonce + "\n" +
 			body + "\n"),
 	)
-	signBytes, err := base64.StdEncoding.DecodeString(signature)
-	if err != nil {
-		return false, err
+	signBytes, err2 := base64.StdEncoding.DecodeString(signature)
+	if err2 != nil {
+		return false, err2
 	}
-	err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, hashed[:], signBytes)
-	return err == nil, nil
+	err3 := rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, hashed[:], signBytes)
+	if err3 != nil {
+		return false, err3
+	}
+	return err3 == nil, nil
 }
 
 //   ------------------------    private func   ------------------------
