@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-19 23:38:05
- * @LastEditTime: 2024-03-21 16:50:17
+ * @LastEditTime: 2024-03-23 13:36:48
  * @FilePath: /k-infra/douyin_sdk/entity/common/pay.go
  * @description: type some description
  */
@@ -59,10 +59,12 @@ type DouyinPayCallBackReqAllData struct {
 }
 
 func (reqData *DouyinPayCallBackReqAllData) VerifySign(
-	publicKeyTokenStr string) (bool, error) {
+	publicKeyTokenStr string, isDebug bool) (bool, error) {
 	return utils.VerifySign(
 		reqData.ByteTimestamp, reqData.ByteNonceStr,
-		reqData.Msg, reqData.ByteSignature, publicKeyTokenStr)
+		reqData.Msg, reqData.ByteSignature,
+		publicKeyTokenStr, isDebug,
+	)
 }
 
 func (reqData *DouyinPayCallBackReqAllData) ParseDouyinOrderInfo() (DouyinPayCallBackInfo, error) {
