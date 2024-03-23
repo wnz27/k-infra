@@ -59,7 +59,7 @@ func BuildSign(httpMethod, uri, timestamp, nonce, body string, privateKey *rsa.P
  * @param {string} pubKeyStr: public key string | 公钥字符串
  * @return {*}
  */
-func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string) (bool, error) {
+func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string, isDebug bool) (bool, error) {
 	pubKey, err1 := PemToRSAPublicKey(platformPubKeyStr) // 注意验签时publicKey使用平台公钥而非应用公钥
 	if err1 != nil {
 		return false, err1
@@ -70,6 +70,9 @@ func VerifySign(timestamp, nonce, body, signature, platformPubKeyStr string) (bo
 			nonce + "\n" +
 			body + "\n"),
 	)
+	if isDebug {
+		fmt.Println("time: ", timestamp, "nonce: ", nonce, "body: ", body, "signature: ", signature)
+	}
 	signBytes, err2 := base64.StdEncoding.DecodeString(signature)
 	if err2 != nil {
 		return false, err2
