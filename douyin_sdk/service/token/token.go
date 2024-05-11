@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 23:08:40
- * @LastEditTime: 2024-03-18 00:36:05
+ * @LastEditTime: 2024-05-11 17:56:06
  * @FilePath: /k-infra/douyin_sdk/service/token/token.go
  * @description: type some description
  */
@@ -51,7 +51,7 @@ func (srv *TokenService) GetAccessToken(getAccessTokenReq *api.GetAccessTokenReq
 	var headerContentTypeJson = []byte(api.GetAccessTokenContentTypeHeader)
 	req.Header.SetContentTypeBytes(headerContentTypeJson)
 	// set body
-	req.SetBodyRaw(reqBytes)
+	req.SetBody(reqBytes)
 
 	resp := fasthttp.AcquireResponse()
 
