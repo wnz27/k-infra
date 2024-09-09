@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2022-03-18 15:03:40
- * @LastEditTime: 2024-03-20 15:25:20
+ * @LastEditTime: 2024-09-09 10:36:21
  * @FilePath: /k-infra/README-Zh.md
  * @description: type some description
 -->
@@ -17,6 +17,10 @@
 ## 一些可能的最佳工程实践
 > 内容记录 加 引用 或者 demo
 - [ ] blabla 
+
+## 算法
+- [ ] 二叉堆封装场景应用 + ut 
+- [ ] LRU 封装极其场景应用 + ut
 
 ## 引用
 - [著名的 go-micro](https://github.com/asim/go-micro)
