@@ -1,6 +1,6 @@
 module github.com/wnz27/k-infra
 
-go 1.19
+go 1.23.9
 
 require (
 	github.com/gin-gonic/gin v1.9.1
