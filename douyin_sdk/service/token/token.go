@@ -2,7 +2,7 @@
  * @Author: 27
  * @LastEditors: 27
  * @Date: 2024-03-17 23:08:40
- * @LastEditTime: 2024-05-11 17:56:06
+ * @LastEditTime: 2026-04-26 15:01:25
  * @FilePath: /k-infra/douyin_sdk/service/token/token.go
  * @description: type some description
  */
@@ -71,7 +71,7 @@ func (srv *TokenService) GetAccessToken(getAccessTokenReq *api.GetAccessTokenReq
 
 	statusCode := resp.StatusCode()
 	if statusCode != http.StatusOK {
-		return nil, errors.New(fmt.Sprintf("ERR invalid HTTP response code: %d", statusCode))
+		return nil, fmt.Errorf("ERR invalid HTTP response code: %d", statusCode)
 	}
 
 	respBody := resp.Body()
@@ -91,6 +91,6 @@ func (srv *TokenService) GetAccessToken(getAccessTokenReq *api.GetAccessTokenReq
 		// if errors.Is(err, io.EOF) {
 		// 	fmt.Printf("DEBUG Parsed Response: %v\n", respEntity)
 		// }
-		return nil, errors.New(fmt.Sprintf("ERR failed to parse response: %v\n", err))
+		return nil, fmt.Errorf("ERR failed to parse response: %v\n", err)
 	}
 }
